@@ -59,7 +59,7 @@ class SimpleResolver(BaseResolver):
                 if self.cache.get(str(qname)):
                     continue
                 self.cache[str(qname)] = True
-                print("%s is not in TW: %s" % (qname, geoip_result.country.iso_code))
+                print("%s is not in AU: %s" % (qname, geoip_result.country.iso_code))
                 continue
             
             reply.add_answer(*RR.fromZone("%s 60 A %s" % (qname, ip)))
