@@ -18,7 +18,7 @@ class SimpleResolver(BaseResolver):
         # Use dnslib to look up the IP address of qname
         
         res = dns.resolver.Resolver()
-        res.nameservers = ['168.95.1.1']
+        res.nameservers = ['139.134.5.51'] # Telstra DNS server in Sydney
         # If the IP address cannot be found, return a message indicating that the domain cannot be found.
         try:
             answers = res.resolve(str(qname))
