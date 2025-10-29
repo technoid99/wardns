@@ -15,11 +15,11 @@ class SimpleResolver(BaseResolver):
     def resolve(self, request, handler):
         qname = request.q.qname
         reply = request.reply()
-        # 透過 dnslib 查詢 qname 的 ip
+        # Use dnslib to look up the IP address of qname
         
         res = dns.resolver.Resolver()
         res.nameservers = ['168.95.1.1']
-        # 如果查不到 ip 就回傳找不到網域
+        # If the IP address cannot be found, return a message indicating that the domain cannot be found.
         try:
             answers = res.resolve(str(qname))
         except dns.resolver.NoAnswer:
@@ -45,7 +45,7 @@ class SimpleResolver(BaseResolver):
                 self.cache[str(qname)] = True
                 print("%s is cloudflare" % (qname))
                 continue
-            # 透過 geoip 查詢 ip 的地理位置
+            # Query the geographical location of an IP address using geoip
             try:
                 geoip_result = self.reader.city(ip)
             except geoip2.errors.AddressNotFoundError:
@@ -54,8 +54,8 @@ class SimpleResolver(BaseResolver):
                 self.cache[str(qname)] = True
                 print("%s(%s) no geoip" % (qname, ip))
                 continue
-            # 如果結果不是 TW ，就回傳找不到網域
-            if geoip_result.country.iso_code != 'TW':
+            # If the result is not AU, then return a message indicating that the domain could not be found.
+            if geoip_result.country.iso_code != 'AU':
                 if self.cache.get(str(qname)):
                     continue
                 self.cache[str(qname)] = True
