@@ -17,8 +17,8 @@ This program is a DNS server. By changing your computer's DNS pointer to this se
 ## Installation
 
 ```
-$ git clone https://github.com/g0v/wardns
-$ cd worddns
+$ git clone https://github.com/technoid99/wardns
+$ cd wardns
 $ curl https://cdn.jsdelivr.net/npm/geolite2-city@1.0.0/GeoLite2-City.mmdb.gz | gunzip > GeoLite2-City.mmdb
 $ python3 -m venv venv
 ```
